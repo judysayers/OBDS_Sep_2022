@@ -1,0 +1,154 @@
+---
+title: "Example code for R S3 object oriented programming"
+author: "Kevin Rue-Albrecht"
+date: "16/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Exercises
+
+## Character
+
+```{r}
+character_object <- "A"
+character_object
+```
+
+```{r}
+str(character_object) # structure of object
+```
+
+```{r}
+class(character_object)
+```
+
+```{r}
+attributes(character_object) # eg if the vector had names you would see this here
+```
+
+```{r}
+character_object2 <- c("A", "B", "C")
+character_object2
+```
+
+```{r}
+str(character_object2)
+```
+
+```{r}
+class(character_object2)
+```
+
+```{r}
+attributes(character_object2)
+```
+
+# Exercise
+
+## Factors
+
+```{r, include=TRUE}
+factor_object <- factor(c("A", "B", "C")) # A factor has levels. All values in factor must take one of these levels
+factor_object
+```
+
+```{r}
+str(factor_object) # look up table - each value of factor assigned a number 
+```
+
+```{r}
+class(factor_object)
+```
+
+```{r}
+attributes(factor_object)
+```
+
+```{r}
+attr(factor_object, "levels")
+```
+
+```{r}
+attr(factor_object, "class")
+```
+
+# Exercise
+
+## Data-frames
+NB a dataframe is a list where the column lengths must be equal so that the dataframe can presrnt as a coherent table
+
+```{r}
+dataframe_object <- data.frame(
+  numbers = c(1, 2, 3),
+  strings = c("A", "B", "C")
+  )
+dataframe_object
+```
+
+```{r}
+class(dataframe_object)
+```
+
+```{r, include=TRUE}
+str(dataframe_object)
+```
+
+```{r}
+attributes(dataframe_object)
+```
+
+# Exercise
+
+## Matrices
+NB a matrix is a vector, shaped across a number of rows and columns
+naturally fills by columns; can parse an argument to flip this around and fill by rows instead
+All values in matrix must be of the same type 
+```{r}
+matrix_object <- matrix(
+  data = c(1, 2, 3, 4, 5, 6, 7, 8),
+  nrow = 2
+  )
+matrix_object
+```
+
+```{r}
+class(matrix_object)
+```
+
+```{r}
+str(matrix_object)
+```
+
+```{r}
+attributes(matrix_object)
+```
+
+```{r}
+attr(matrix_object, "dim")
+```
+
+# Exercise
+
+## S3 method dispatch
+! Never include dots in naming in R: instead use _ letters and digits
+```{r}
+methods("print") %>% head(14)
+```
+
+```{r}
+print.factor(factor_object)
+```
+
+```{r}
+print.factor(character_object)
+```
+
+```{r}
+print.default(character_object)
+```
+
